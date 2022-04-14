@@ -7,8 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Context" />
-      <Folder Include="Entities" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TestPad.Common\TestPad.Common.csproj" />
     </ItemGroup>
 
 </Project>

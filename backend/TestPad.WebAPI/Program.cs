@@ -1,10 +1,16 @@
 using Microsoft.OpenApi.Models;
+using TestPad.DAL;
+using TestPad.WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.ConfigureDAL(builder.Configuration);
+builder.Services.ConfigureAuth(builder.Configuration);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
