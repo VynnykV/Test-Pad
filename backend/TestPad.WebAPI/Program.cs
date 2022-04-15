@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using TestPad.DAL;
 using TestPad.WebAPI.Extensions;
+using TestPad.WebAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +50,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<GenericExceptionHandlerMiddleware>();
 
 app.UseCors(opt => opt
     .AllowAnyHeader()

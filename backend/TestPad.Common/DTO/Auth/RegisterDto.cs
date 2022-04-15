@@ -12,8 +12,4 @@ public class RegisterDto
 
     [Required] 
     public string Password { get; set; } = default!;
-
-    [Required] 
-    [Compare("Password")] 
-    public string ConfirmPassword { get; set; } = default!;
 }

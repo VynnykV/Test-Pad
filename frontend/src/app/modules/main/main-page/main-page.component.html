@@ -1,0 +1,21 @@
+<p-menubar>
+    <ng-template pTemplate="start">
+        <h2 class="logo" *ngIf="!authorizedUser" [routerLink]="['/home']">Test Pad</h2>
+        <h2 class="logo" *ngIf="authorizedUser" [routerLink]="['/main/tests']">Test Pad</h2>
+    </ng-template>
+    <div *ngIf="!authorizedUser; else authorized">
+        <button pButton label="Sign In" class="p-button-outlined p-button-secondary" [routerLink]="['/login']"></button>
+        <button pButton label="Sign Up" class="p-button-outlined p-button-secondary" [routerLink]="['/register']"></button>
+    </div>
+    <ng-template #authorized>
+        <div class="username">{{authorizedUser?.username}}</div>
+        <button pButton label="Log out" class="p-button-outlined p-button-secondary" (click)="logout()"></button>
+    </ng-template>
+</p-menubar>
+
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
+
+<p-toast position="bottom-right"></p-toast>
+

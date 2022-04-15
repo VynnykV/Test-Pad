@@ -38,9 +38,26 @@ public class UserService : BaseService, IUserService
             UserName = registerDto.Username,
             Email = registerDto.Email
         };
-        await _userManager.CreateAsync(user, registerDto.Password);
+        var result = await _userManager.CreateAsync(user, registerDto.Password);
+        if (!result.Succeeded)
+        {
+            throw new InvalidOperationException(string.Join("\n", result.Errors.Select(e => e.Description)));
+        }
         
         return _mapper.Map<UserDto>(await GetByEmailAsync(registerDto.Email));
+    }
+
+    public async Task<UserDto> GetByIdAsync(int id)
+    {
+        var userEntity = await _context.Users
+            .FirstOrDefaultAsync(u => u.Id == id);
+        
+        if (userEntity is null)
+        {
+            throw new NotFoundException(nameof(User), id);
+        }
+
+        return _mapper.Map<UserDto>(userEntity);
     }
 
     public async Task<UserDto> GetByEmailAsync(string email)

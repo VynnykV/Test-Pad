@@ -29,7 +29,7 @@ public class AuthService : IAuthService
     public async Task<AuthUserDto> Login(LoginDto loginDto)
     {
         var user = await _userService.GetByEmailAsync(loginDto.Email);
-        if (user is not null && await _userService.CheckPasswordAsync(user, loginDto.Password))
+        if (await _userService.CheckPasswordAsync(user, loginDto.Password))
         {
             var authClaims = new List<Claim>
             {

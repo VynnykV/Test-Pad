@@ -6,6 +6,7 @@ namespace TestPad.BLL.Interfaces;
 public interface IUserService
 {
     public Task<UserDto> CreateAsync(RegisterDto registerDto);
+    public Task<UserDto> GetByIdAsync(int id);
     public Task<UserDto> GetByEmailAsync(string email);
     Task<bool> CheckPasswordAsync(UserDto userDto, string password);
 }
