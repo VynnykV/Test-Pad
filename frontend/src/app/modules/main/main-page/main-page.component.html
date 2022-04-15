@@ -4,7 +4,7 @@
         <h2 class="logo" *ngIf="authorizedUser" [routerLink]="['/main/tests']">Test Pad</h2>
     </ng-template>
     <div *ngIf="!authorizedUser; else authorized">
-        <button pButton label="Sign In" class="p-button-outlined p-button-secondary" [routerLink]="['/login']"></button>
+        <button pButton label="Sign In" class="p-button-outlined p-button-secondary login-btn" [routerLink]="['/login']"></button>
         <button pButton label="Sign Up" class="p-button-outlined p-button-secondary" [routerLink]="['/register']"></button>
     </div>
     <ng-template #authorized>
