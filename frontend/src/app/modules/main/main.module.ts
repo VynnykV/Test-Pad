@@ -9,12 +9,16 @@ import { SharedModule } from "primeng/api";
 import { HomePageComponent } from './home/home-page.component';
 import { CardModule } from "primeng/card";
 import { ToastModule } from "primeng/toast";
+import { TestsPageComponent } from './tests-page/tests-page.component';
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { CheckboxModule } from "primeng/checkbox";
 
 
 @NgModule({
     declarations: [
         MainPageComponent,
-        HomePageComponent
+        HomePageComponent,
+        TestsPageComponent
     ],
     exports: [
         MainPageComponent
@@ -26,7 +30,9 @@ import { ToastModule } from "primeng/toast";
         ButtonModule,
         SharedModule,
         CardModule,
-        ToastModule
+        ToastModule,
+        ConfirmDialogModule,
+        CheckboxModule
     ]
 })
 export class MainModule { }

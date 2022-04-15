@@ -1,5 +1,8 @@
 ﻿using System.Reflection;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using TestPad.BLL.Interfaces;
 using TestPad.BLL.MappingProfiles;
 using TestPad.BLL.Services;
@@ -14,6 +17,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<ITestService, TestService>();
     }
     
     public static void AddAutoMapper(this IServiceCollection services)
@@ -32,5 +36,25 @@ public static class ServiceCollectionExtensions
                 opts.Password.RequireLowercase = false;
             })
             .AddEntityFrameworkStores<TestPadContext>();
+        
+        services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = configuration["JWTSettings:ValidAudience"],
+                    ValidIssuer = configuration["JWTSettings:ValidIssuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWTSettings:Secret"]))
+                };
+            });
     }
 }

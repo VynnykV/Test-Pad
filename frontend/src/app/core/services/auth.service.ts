@@ -7,6 +7,7 @@ import { Login } from "../models/auth/login";
 import { AuthUser } from "../models/auth/auth-user";
 import { AccessToken } from "../models/auth/access-token";
 import { UserService } from "./user.service";
+import { EventService } from "./event.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthService {
 
     constructor(
         private httpService: HttpInternalService,
-        private userService: UserService
+        private userService: UserService,
+        private eventService: EventService
     ) { }
 
     public getUser() {
@@ -26,6 +28,7 @@ export class AuthService {
             : this.userService.getUserFromToken().pipe(
                 map((resp) => {
                     this.user = resp;
+                    this.eventService.userChanged(this.user);
                     return this.user;
                 })
             );
@@ -40,8 +43,9 @@ export class AuthService {
     }
 
     public logout() {
-        this.user = undefined!;
         localStorage.removeItem('accessToken');
+        this.user = undefined!;
+        this.eventService.userChanged(undefined!);
     }
 
     public areTokensExist() {
@@ -53,6 +57,7 @@ export class AuthService {
             map((resp) => {
                 this._setToken(resp.token);
                 this.user = resp.user;
+                this.eventService.userChanged(this.user);
                 return resp.user;
             })
         );

@@ -1,0 +1,18 @@
+<div class="content">
+    <div class="tests">
+        <div class="test-item" *ngFor="let test of tests">
+            <h2 class="test-title">{{test.title}}</h2>
+            <button pButton type="button" label="Run" class="p-button-success" (click)="runTest(test.id)"></button>
+        </div>
+    </div>
+</div>
+
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="footer">
+        <div class="field-checkbox">
+            <p-checkbox #checkbox [binary]="true" id="binary"></p-checkbox>
+            <label for="binary">I agree to start</label>
+        </div>
+        <button type="button" pButton icon="pi pi-check" label="Proceed" (click)="cd.accept()" [disabled]="!checkbox.checked()"></button>
+    </ng-template>
+</p-confirmDialog>
