@@ -13,7 +13,7 @@ public class UserProfile : Profile
             .ForMember(d => d.UserName, 
                 opt => opt.MapFrom(s => s.Username));
         CreateMap<User, UserDto>()
-            .ForMember(d => d.UserName, 
+            .ForMember(d => d.Username, 
                 opt => opt.MapFrom(s => s.UserName));
     }
 }

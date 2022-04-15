@@ -1,0 +1,30 @@
+<div class="test-passing" *ngIf="!isFinished">
+    <div class="test-header">
+        <h2>{{test.title}}</h2>
+    </div>
+    <div class="center-container content">
+        <div class="question-card">
+            <p-dataView #dataView [value]="test.questions" [paginator]="true" [rows]="1" layout="grid" (onPage)="handleOtherPageOpen()">
+                <ng-template let-question pTemplate="gridItem">
+                    <div class="card">
+                        <div class="question-header">
+                            <p-chip label="{{dataView.first + 1}}" class="chip"></p-chip>
+                            <div class="question-content">{{question.content}}</div>
+                        </div>
+                        <div class="answers">
+                            <div class="answer-item" *ngFor="let answer of question.answers">
+                                <input type="radio" name="answer" id="{{answer.id}}" [checked]="answer.isPicked" (change)="handleClick(answer)"/>
+                                <div class="answer-content">
+                                    {{answer.content}}
+                                </div>
+                            </div>
+                        </div>
+                        <button pButton type="button" label="Next question" class="p-button-success next" (click)="nextPage()" [disabled]="!currentAnswer" *ngIf="!isLastPage()"></button>
+                        <button pButton type="button" label="Finish" class="p-button-success next" (click)="showTestResult()" [disabled]="!currentAnswer" *ngIf="isLastPage()"></button>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </div>
+</div>
+<app-test-result [test]="test" *ngIf="isFinished"></app-test-result>

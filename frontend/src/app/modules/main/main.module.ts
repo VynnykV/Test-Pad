@@ -12,13 +12,25 @@ import { ToastModule } from "primeng/toast";
 import { TestsPageComponent } from './tests-page/tests-page.component';
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { CheckboxModule } from "primeng/checkbox";
+import { TestPageComponent } from './test-page/test-page.component';
+import { DataViewModule } from "primeng/dataview";
+import { ScrollingModule } from "@angular/cdk/scrolling";
+import { PaginatorModule } from "primeng/paginator";
+import { BadgeModule } from "primeng/badge";
+import { ChipModule } from "primeng/chip";
+import { SelectButtonModule } from "primeng/selectbutton";
+import { AvatarModule } from "primeng/avatar";
+import { RadioButtonModule } from "primeng/radiobutton";
+import { TestResultComponent } from './test-page/test-result/test-result.component';
 
 
 @NgModule({
     declarations: [
         MainPageComponent,
         HomePageComponent,
-        TestsPageComponent
+        TestsPageComponent,
+        TestPageComponent,
+        TestResultComponent
     ],
     exports: [
         MainPageComponent
@@ -32,7 +44,15 @@ import { CheckboxModule } from "primeng/checkbox";
         CardModule,
         ToastModule,
         ConfirmDialogModule,
-        CheckboxModule
+        CheckboxModule,
+        DataViewModule,
+        ScrollingModule,
+        PaginatorModule,
+        BadgeModule,
+        ChipModule,
+        SelectButtonModule,
+        AvatarModule,
+        RadioButtonModule
     ]
 })
 export class MainModule { }

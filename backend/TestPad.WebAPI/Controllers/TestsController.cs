@@ -22,4 +22,10 @@ public class TestsController : ControllerBase
     {
         return Ok(await _testService.GetAllAsync(true, takeQuantity));
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<TestDto>> GetAsync(int id)
+    {
+        return Ok(await _testService.GetAsync(id));
+    }
 }

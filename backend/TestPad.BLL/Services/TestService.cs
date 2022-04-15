@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using TestPad.BLL.Exceptions;
 using TestPad.BLL.Interfaces;
 using TestPad.BLL.Services.Abstract;
 using TestPad.Common.DTO.Test;
@@ -17,22 +18,31 @@ public class TestService : BaseService, ITestService
 
     public async Task<ICollection<TestDto>> GetAllAsync(bool shuffle, int? takeQuantity = null)
     {
-        IQueryable<Test> query = _context.Tests
+        var tests = await _context.Tests
             .Include(t => t.Questions)
-            .ThenInclude(q => q.Answers);
-
-        if (takeQuantity is not null)
-        {
-            query = query.Take(takeQuantity.Value);
-        }
-
-        var tests = await query.ToListAsync();
+            .ThenInclude(q => q.Answers)
+            .ToListAsync();
 
         if (shuffle)
         {
             tests.Shuffle();
         }
 
-        return _mapper.Map<ICollection<TestDto>>(tests);
+        return _mapper.Map<ICollection<TestDto>>(takeQuantity is not null ? tests.Take(takeQuantity.Value) : tests);
+    }
+
+    public async Task<TestDto> GetAsync(int id)
+    {
+        var testEntity = await _context.Tests
+            .Include(t => t.Questions)
+            .ThenInclude(q => q.Answers)
+            .FirstOrDefaultAsync(t => t.Id == id);
+
+        if (testEntity is null)
+        {
+            throw new NotFoundException(nameof(Test), id);
+        }
+
+        return _mapper.Map<TestDto>(testEntity);
     }
 }

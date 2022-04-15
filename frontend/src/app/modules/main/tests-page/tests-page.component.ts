@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Test } from "../../../core/models/test/test";
 import { TestService } from "../../../core/services/test.service";
-import { ConfirmationService } from "primeng/api";
+import { ConfirmationService, MessageService } from "primeng/api";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-tests-page',
@@ -13,7 +14,9 @@ export class TestsPageComponent implements OnInit {
 
     constructor(
         private testService: TestService,
-        private confirmationService: ConfirmationService
+        private confirmationService: ConfirmationService,
+        private router: Router,
+        private messageService: MessageService
     ) { }
 
     ngOnInit(): void {
@@ -24,7 +27,12 @@ export class TestsPageComponent implements OnInit {
         let test = this.tests.find(t => t.id === id);
         this.confirmationService.confirm({
             header: `${test?.title}`,
-            message: `${test?.description}`
+            message: `${test?.description}`,
+            accept: () => {
+                this.router.navigate(['/main/test', id]).then(() => {
+                    this.messageService.add({severity:'success', summary:'Test is started', detail:'Good Luck!'});
+                });
+            }
         })
     }
 

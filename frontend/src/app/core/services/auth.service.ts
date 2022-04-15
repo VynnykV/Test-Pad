@@ -14,7 +14,7 @@ import { EventService } from "./event.service";
 })
 export class AuthService {
     public routePrefix = '/api/auth';
-    private user: User = {} as User;
+    private user: User;
 
     constructor(
         private httpService: HttpInternalService,

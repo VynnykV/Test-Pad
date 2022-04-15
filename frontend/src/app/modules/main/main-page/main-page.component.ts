@@ -11,7 +11,7 @@ import { EventService } from "../../../core/services/event.service";
   styleUrls: ['./main-page.component.sass']
 })
 export class MainPageComponent implements OnInit {
-    public authorizedUser: User = { } as User;
+    public authorizedUser: User;
 
     private unsubscribe$ = new Subject<void>();
 
@@ -42,6 +42,9 @@ export class MainPageComponent implements OnInit {
         this.authService
             .getUser()
             .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((user) => (this.authorizedUser = user));
+            .subscribe((user) =>
+            {
+                this.authorizedUser = user;
+            });
     }
 }

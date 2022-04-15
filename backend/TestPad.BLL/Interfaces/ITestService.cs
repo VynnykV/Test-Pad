@@ -5,4 +5,5 @@ namespace TestPad.BLL.Interfaces;
 public interface ITestService
 {
     Task<ICollection<TestDto>> GetAllAsync(bool shuffle, int? takeQuantity = null);
+    Task<TestDto> GetAsync(int id);
 }

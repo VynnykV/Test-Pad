@@ -1,0 +1,21 @@
+<div class="content">
+    <button pButton type="button" label="Back" class="p-button-success" [routerLink]="['/main/tests']"></button>
+    <h1 class="result">{{getRightAnswersPercentage()}}% right answers</h1>
+    <div class="question" *ngFor="let question of test.questions">
+        <div class="question-body">
+            <h2 class="question-content">
+                {{question.content}}
+            </h2>
+            <div class="question-answers" *ngFor="let answer of question.answers">
+                <ul>
+                    <li class="answer-item">
+                        <div class="answer-content" [ngClass]="(answer.isPicked && answer.isPicked !== answer.isCorrect)? 'wrong-answer' : answer.isCorrect ? 'correct-answer' : ''">
+                            {{!answer.isPicked ? answer.content : answer.content + " - " + "Your answer"}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

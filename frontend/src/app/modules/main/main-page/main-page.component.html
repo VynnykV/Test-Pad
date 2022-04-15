@@ -8,7 +8,7 @@
         <button pButton label="Sign Up" class="p-button-outlined p-button-secondary" [routerLink]="['/register']"></button>
     </div>
     <ng-template #authorized>
-        <div class="username">{{authorizedUser?.username}}</div>
+        <p-avatar label="{{authorizedUser.username.substring(0, 1)}}" styleClass="mr-2" size="large" shape="circle"></p-avatar>
         <button pButton label="Log out" class="p-button-outlined p-button-secondary" (click)="logout()"></button>
     </ng-template>
 </p-menubar>
