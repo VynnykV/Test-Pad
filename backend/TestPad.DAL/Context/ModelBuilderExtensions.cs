@@ -46,18 +46,22 @@ public static class ModelBuilderExtensions
             {
                 Id = 1,
                 Title = "Present Simple",
+                Description = "Learn how to use the present simple in English. " +
+                              "This is an English grammar lesson for beginners or elementary students",
                 AuthorId = users.RandomElement().Id
             },
             new Test()
             {
                 Id = 2,
                 Title = "Past Simple",
+                Description = "Past simple exercises - regular verbs elementary level esl. Beginners exercises.",
                 AuthorId = users.RandomElement().Id
             },
             new Test()
             {
                 Id = 3,
                 Title = "Future Simple",
+                Description = "Online quiz to test your understanding of the Future Simple tense in English.",
                 AuthorId = users.RandomElement().Id
             }
         };
