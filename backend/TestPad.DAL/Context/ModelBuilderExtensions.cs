@@ -266,14 +266,14 @@ public static class ModelBuilderExtensions
             new Answer()
             {
                 Id = 16,
-                Content = "last night",
-                IsCorrect = true,
+                Content = "long ago",
                 QuestionId = questions[5].Id
             },
             new Answer()
             {
                 Id = 17,
-                Content = "long ago",
+                Content = "last night",
+                IsCorrect = true,
                 QuestionId = questions[5].Id
             },
             new Answer()
@@ -304,20 +304,20 @@ public static class ModelBuilderExtensions
             new Answer()
             {
                 Id = 22,
-                Content = "didn't lie",
-                IsCorrect = true,
-                QuestionId = questions[7].Id
-            },
-            new Answer()
-            {
-                Id = 23,
                 Content = "didn't never lie",
                 QuestionId = questions[7].Id
             },
             new Answer()
             {
-                Id = 24,
+                Id = 23,
                 Content = "never lie",
+                QuestionId = questions[7].Id
+            },
+            new Answer()
+            {
+                Id = 24,
+                Content = "didn't lie",
+                IsCorrect = true,
                 QuestionId = questions[7].Id
             },
             new Answer()
@@ -342,14 +342,14 @@ public static class ModelBuilderExtensions
             new Answer()
             {
                 Id = 28,
-                Content = "stayed",
-                IsCorrect = true,
+                Content = "didn't stay",
                 QuestionId = questions[9].Id
             },
             new Answer()
             {
                 Id = 29,
-                Content = "didn't stay",
+                Content = "stayed",
+                IsCorrect = true,
                 QuestionId = questions[9].Id
             },
             new Answer()
@@ -380,33 +380,33 @@ public static class ModelBuilderExtensions
             new Answer()
             {
                 Id = 34,
+                Content = "How many, it will",
+                QuestionId = questions[11].Id
+            },
+            new Answer()
+            {
+                Id = 35,
+                Content = "How much, will it",
+                QuestionId = questions[11].Id
+            },
+            new Answer()
+            {
+                Id = 36,
                 Content = "How much, it will",
                 IsCorrect = true,
                 QuestionId = questions[11].Id
             },
             new Answer()
             {
-                Id = 35,
-                Content = "How many, it will",
-                QuestionId = questions[11].Id
-            },
-            new Answer()
-            {
-                Id = 36,
-                Content = "How much, will it",
-                QuestionId = questions[11].Id
-            },
-            new Answer()
-            {
                 Id = 37,
                 Content = "will never believe",
-                IsCorrect = true,
                 QuestionId = questions[12].Id
             },
             new Answer()
             {
                 Id = 38,
                 Content = "will never believe",
+                IsCorrect = true,
                 QuestionId = questions[12].Id
             },
             new Answer()

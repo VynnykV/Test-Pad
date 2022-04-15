@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestPad.DAL.Context;
 
@@ -11,9 +12,10 @@ using TestPad.DAL.Context;
 namespace TestPad.DAL.Migrations
 {
     [DbContext(typeof(TestPadContext))]
-    partial class TestPadContextModelSnapshot : ModelSnapshot
+    [Migration("20220415223434_ChangeSeeding")]
+    partial class ChangeSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
