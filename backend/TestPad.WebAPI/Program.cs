@@ -51,6 +51,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MigrateDb();
 app.UseMiddleware<GenericExceptionHandlerMiddleware>();
 
 app.UseCors(opt => opt

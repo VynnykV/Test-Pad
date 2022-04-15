@@ -2,6 +2,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using TestPad.BLL.Interfaces;
 using TestPad.BLL.MappingProfiles;
@@ -23,6 +24,15 @@ public static class ServiceCollectionExtensions
     public static void AddAutoMapper(this IServiceCollection services)
     {
         services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
+    }
+    
+    public static IApplicationBuilder MigrateDb(this IApplicationBuilder builder)
+    {
+        using var scope = builder.ApplicationServices.GetService<IServiceScopeFactory>()?.CreateScope();
+        using var context = scope?.ServiceProvider.GetRequiredService<TestPadContext>();
+        context?.Database.Migrate();
+
+        return builder;
     }
     
     public static void ConfigureAuth(this IServiceCollection services, IConfiguration configuration)
