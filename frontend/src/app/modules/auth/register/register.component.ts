@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
         this.authService.register(register)
         .subscribe(() => {
             this.router.navigate(['/login']).then(() => {
-                this.messageService.add({severity:'success', summary:'Congratulate!', detail:'You have successfully register'});
+                this.messageService.add({severity:'success', summary:'Congratulate!', detail:'You have successfully registered'});
             });
         },
         error => {
