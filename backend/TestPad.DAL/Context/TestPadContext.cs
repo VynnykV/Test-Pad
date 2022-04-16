@@ -9,7 +9,7 @@ public class TestPadContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
     public DbSet<Test> Tests { get; private set; }
     public DbSet<Question> Questions { get; private set; }
-    public DbSet<Answer> Answers { get; set; }
+    public DbSet<Answer> Answers { get; private set; }
     
     public TestPadContext(DbContextOptions<TestPadContext> options) : base(options) { }
 

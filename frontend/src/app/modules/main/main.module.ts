@@ -6,7 +6,6 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MenubarModule } from "primeng/menubar";
 import { ButtonModule } from "primeng/button";
 import { SharedModule } from "primeng/api";
-import { HomePageComponent } from './home/home-page.component';
 import { CardModule } from "primeng/card";
 import { ToastModule } from "primeng/toast";
 import { TestsPageComponent } from './tests-page/tests-page.component';
@@ -27,7 +26,6 @@ import { TestResultComponent } from './test-page/test-result/test-result.compone
 @NgModule({
     declarations: [
         MainPageComponent,
-        HomePageComponent,
         TestsPageComponent,
         TestPageComponent,
         TestResultComponent

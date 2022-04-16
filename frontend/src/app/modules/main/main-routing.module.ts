@@ -5,12 +5,17 @@ import { TestPageComponent } from "./test-page/test-page.component";
 
 const routes: Routes = [
     {
-        path: 'tests',
-        component: TestsPageComponent
-    },
-    {
-        path: 'test/:id',
-        component: TestPageComponent
+        path: '',
+        children: [
+            {
+                path: 'tests',
+                component: TestsPageComponent
+            },
+            {
+                path: 'test/:id',
+                component: TestPageComponent
+            }
+        ]
     }
 ];
 

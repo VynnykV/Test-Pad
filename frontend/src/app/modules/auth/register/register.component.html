@@ -1,5 +1,5 @@
 <div class="center-container content">
-    <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6 center-element">
         <div class="text-center mb-5">
             <div class="text-900 text-3xl font-medium mb-3">Sign up to Test Pad</div>
             <span class="text-600 font-medium line-height-3">Already a member?</span>
@@ -16,7 +16,7 @@
             <label for="password" class="block text-900 font-medium mb-2">Password</label>
             <input id="password" type="password" pInputText class="w-full mb-3" formControlName="password">
 
-            <button pButton pRipple label="Sign Up" icon="pi pi-user" class="w-full" (click)="submit()"></button>
+            <button pButton pRipple label="Sign Up" icon="pi pi-user" class="w-full" (click)="submit()" [disabled]="!form.valid"></button>
         </form>
     </div>
 </div>

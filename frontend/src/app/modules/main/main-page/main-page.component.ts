@@ -31,7 +31,7 @@ export class MainPageComponent implements OnInit {
     public logout() {
         this.authService.logout();
         this.authorizedUser = undefined!;
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
     }
 
     private getUser() {

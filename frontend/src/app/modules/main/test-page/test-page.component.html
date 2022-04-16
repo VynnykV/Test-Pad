@@ -3,7 +3,7 @@
         <h2>{{test.title}}</h2>
     </div>
     <div class="center-container content">
-        <div class="question-card">
+        <div class="question-card center-element">
             <p-dataView #dataView [value]="test.questions" [paginator]="true" [rows]="1" layout="grid" (onPage)="handleOtherPageOpen()">
                 <ng-template let-question pTemplate="gridItem">
                     <div class="card">
