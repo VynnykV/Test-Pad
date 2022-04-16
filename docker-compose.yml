@@ -1,0 +1,48 @@
+version: '3.1'
+services:
+  testpad_api:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+      args:
+        - PROJECT_PORT=5050
+    container_name: testpad_api
+    restart: on-failure
+    ports:
+        - "5050:5050"
+    networks:
+        - back
+    environment:
+        ASPNETCORE_ENVIRONMENT: 'Development'
+        ConnectionStrings__testPadDBConnection: 'Server=sql_server;Database=TestPadDB;User ID=SA;Password=MySecretPassword!'
+
+  testpad_client:
+    depends_on:
+        - testpad_api
+    build:
+        context: ./frontend
+        dockerfile: Dockerfile
+    container_name: testpad_client
+    restart: on-failure
+    ports:
+        - "4200:80"
+    networks:
+        - back
+        - front
+
+  sql_server:
+          image: mcr.microsoft.com/mssql/server:2017-latest
+          container_name: sql_server
+          ports:
+              - 1433:1433
+          networks:
+              - back
+          environment:
+              SA_PASSWORD: MySecretPassword!
+              ACCEPT_EULA: "Y"
+
+networks:
+    back:
+        driver: bridge
+    front:
+        driver: bridge
