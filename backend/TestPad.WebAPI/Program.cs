@@ -41,6 +41,7 @@ builder.Services.AddSwaggerGen(c =>
         }  
     });
 });
+builder.WebHost.UseUrls("http://*:5050");
 
 var app = builder.Build();
 
